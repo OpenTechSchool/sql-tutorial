@@ -32,7 +32,7 @@ INSERT INTO person VALUES (250,'Max','Berlin',21);
 <p>Max has moved from Berlin to Leipzig. To change the data use the <code>UPDATE</code> and <code>SET</code> command together with a <code>WHERE</code> clause:</p>
 <pre>
 UPDATE person
-SET residence = 'Leipzig;
+SET residence = 'Leipzig'
 WHERE id = 250;
 </pre>
 <p>You can enter a comma seperated list of column assignments in the <code>SET</code> command. It is very important to use the <strong>primary key</strong> and not the name column (i.e. <code>WHERE name='Max'</code>). In this case you would move all persons called Max to Leipzig. Please use a query to check if Max was moved correctly.</p>
