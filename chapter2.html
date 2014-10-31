@@ -2,14 +2,14 @@
 <html>
 
 <head>
-  <title>SQL Basics</title>
+  <title>SQL basics</title>
   <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
   <link rel=stylesheet href=style.css>
   <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 </head>
 <body>
 
-<h1>SQL Basics</h1>
+<h1>SQL basics</h1>
 
 <h2>Simple queries</h2>
 <p>In a SQL database, data is stored in a set of tables. A table contains a collection of entries (="lines"), information of the same type.</p>
@@ -27,14 +27,14 @@
 <p class=question>1.) How many different cities of residence do the people in the persons table have?</p>
 
 <h2>Types</h2>
-<p>Columns in databases can have different types. The most important ones are <code>varchar(n)</code> for text data with up to n characters, <code>integer</code> for integer numbers (e.g. 12 or -4),  <code>real</code> for floating point numbers (e.g. 23.3434), <code>date</code> for dates (e.g. "12/12/2014"), <code>time</code> for value denoting a time of the day, and <code>boolean</code> for entries which can be either true or false (e.g. does the phone number belong to an active contract?).</p>
+<p>Columns in databases can have different types. The most important ones are <code>varchar(n)</code> for text data with up to n characters, <code>integer</code> for integer numbers (e.g. 12 or -4),  <code>real</code> for floating point numbers (e.g. 23.3434), <code>date</code> for dates (e.g. "12/12/2014"), <code>time</code> for values denoting a time of the day, and <code>boolean</code> for entries which can be either true or false (e.g. does the phone number belong to an active contract?).</p>
 
 <h2>Constraints</h2>
-<p>Quite often we are not interested in all of the entries of the database, especially because it might contain a huge number of lines. To get only the lines fulfilling some constraints, the where clause is used, e.g:</p>
+<p>Quite often we are not interested in all of the entries of the database, especially because it might contain a huge number of lines. To get only the lines fulfilling some constraints, the <code>where</code> clause is used, e.g:</p>
 <pre>select name, residence from person where age > 30;</pre>
 <p>For the different SQL data types, different constrains make sense. For all types, we can check for equal <code>=</code> and not equal <code>!=</code>. For numbers, one can also compare for <em>larger</em> <code>></code>, <em>larger or equal</em> <code>>=</code>, <em>smaller</em> <code><</code>, <em>smaller or equal</em> <code><=</code>.</p>
 
-<p>For text, we use like, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy, but not <strong>An</strong>na, since this is an capital A.</p>
+<p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy, but not <strong>An</strong>na, since this is an apital A.</p>
 <p>In SQLite the >,<,= operators for dates, do an <em>lexicographical</em> comparison, not a <em>numeric</em> one. This means that if there is an inconsistent representation of dates, the comparison might fail even though the two values represent the same dates. E.g. if once the format <code>"2014-10-23"</code> and once the format <code>"2014/10/16"</code> is used. Note that here double quotes <code>"</code> are used instead of single quotes <code>'</code>.</p>
 <p>Furthermore, the operator in checks if the left-hand-side is a member of the set on the right-hand-side. The two following statements are equivalent (try yourselves with a suitable query).</p>
 <pre>
@@ -45,7 +45,7 @@ name = 'Philipp' or name = 'Carlos'
 <p class=question>2.) Get all people whose names contains "oh".</p>
 <p>Constraints can be combined by the logical operator <code>and</code> and the operator <code>or</code>.</p>
 <p class=question>3.) Find all people whose first name is Carlos and who are older than 20 years.</p>
-<p>There is another table which is called phone_contract. The column containing the status (active, non-active) is called status.</p>
+<p>There is another table which is called <code>phone_contract</code>. The column containing the status (active, non-active) is called <code>status</code>.</p>
 <p class=question>4.) Find out, how many contracts there are and how many accounts are active.</p>
 
 <h2>Results from more than one table</h2>
@@ -67,8 +67,8 @@ where c.name = p.name;</pre>
 <p>The methods described above allow to get information from an arbitrary number of tables. But if you want to formulate an condition which depends on values of certain data entries, you need sub-queries. Assume, we want to get all names and phone numbers of all people who are older than Carlos:</p>
 <pre>
 select person.name, phone_number from person, phone_contract
-where person.name = phone_contract.name and age > 
-(select age from person where name = 'Carlos');
+where person.name = phone_contract.name and
+age > (select age from person where name = 'Carlos');
 </pre>
 <p>The part in the last line in parentheses is called a <em>sub-query</em>. Such sub-queries can be a little bit confusing at first sight so you might want to pause for a moment. An operator which is very useful when working with sub-queries is <code>in</code>. Keep this in mind when solving the following criminal case. </p>
 
