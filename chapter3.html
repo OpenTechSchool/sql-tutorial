@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>The theft of Mona Lisa</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h1>The theft of Mona Lisa</h1>
+<p>Now we can start to use our new skills to solve a criminal case: one of the most startling art thefts in history: on October the 23rd, 2014 the Mona Lisa was stolen from the Louvre in Paris. There is no trace of the thieves. You are working for Interpol and will find out who is responsible for this crime. Due to new regulations you have access to any data of any international companies and states, like register of residents, mobile phone text messages or bank data. So, using these resources, find the thieves!</p>
+
+<h2>Which tables are there? - System tables</h2>
+<p>So, first you need to get an overview of what kind of data is actually available. i.e. you want to know what tables are in the database. The sqlite database contains are table named <code>sqlite_master</code> which holds meta information. We can get the names of the tables by an ordinary SQL query:</p>
+<pre>select name from sqlite_master where type = 'table';</pre>
+<p>To get information about a specific table use the <code>pragma</code> command:</p>
+<pre>pragma table_info (tablename);</pre>
+<p class=question>8.) Use the two commands above to get information about the columns in the various tables.
+Remarks: In other databases (e.g. Oracle, DB2 etc.) this meta information is stored differently, i.e. the system tables are always called differently. Sometimes there is more than one system table. When working with another database than sqlite you need to google for the names of the system tables of that database.</p>
+
+<h2>How to find the thief</h2>
+<p>For finding the thief we have the following plan:</p>
+<ul>
+<li>Find out, who was in Paris at that time.</li>
+<li>The thief was probably not working alone. Is there any suspicious communication during the time in question?</li>
+<li>If you find the people responsible, who was the actual wire-puller and who was "only" executing henchman?</li>
+</ul>
+
+<h2>Who was in Paris?</h2>
+<p>When you try to transform the following questions into sql queries, you might want to check for the actual column names again using the <code>pragma</code> command!</p>
+<p class=question>9.) Look at the system table. What table could contain information regarding traveling?</p>
+<p class=question>10.) Get an idea what kind of information is stored in the travel-table? (Hint: have a look at the actual data, and a second look on the table information)</p>
+<p class=question>11.) Get the name of all persons who live in Paris.</p>
+<p class=question>12.) Get all names that did a journey to Paris before 23.10.2014.</p>
+<p class=question>13.) Get all names that did a journey from Paris after 23.10.2014.</p>
+<p class=question>14.) Get all names, that did a journey to Paris before 23.10.2014, where this name is also in an entry for a journey from Paris after the 23.10.2014.</p>
+<p class=question>15.) Get all names of persons who live in Paris or spent their time in Paris on 23.10.2014 (according to the travel data).</p>
+<p>Congratulations! You have reduced the number reduced the number of suspects tremendously!<p>
+
+<h2>How information of different tables are cleanly connected: Key constraints</h2>
+<p>The local police will pay these people a visit to ask for an alibi for the time in question. So you need a list of names and their residence. Repeat the select from before, but this time query for name as well as for residence.</p>
+<p>Now, check the result. There is something wrong! In the list of conspicuous persons, there is one, who actually never was in Paris, i.e. who lives neither in Paris nor was traveling there.</p>
+<p class=question>16.) Who is it? Hint: Perform a select on the flight table where the name is one of those who do not live in Paris, and check, and then check for every person-residence pair if there is a corresponding flight. For one is not. Who? Why is this person turning up in that list? Look at your <code>where</code> statement.</p>
+
+<p>To prevent mistakes like this, data is usually more structured: People who create a table, usually define a column (or the combination of several columns) which is unique for every entry. This column is called the <em>primary key</em>. Other tables which are referencing entries of this table have a corresponding column, containing the same value as the primary key column of the referenced table. This corresponding column is called </em>foreign key</em>. For example, in our person table the field <code>ID</code> is the primary key. To find out about the primary keys of a table we can use the <code>pragma</code> command as
+<pre>pragma table_info (tablename)</pre>
+<p>This returns a list of columns where the last number is non-zero exactly if the column is a primary key. However, to also see foreign keys you have to use the column <code>sql</code> in the table <code>sqlite_master</code>.</p>
+<p class=question>17.) What foreign keys are used in the table containing the messages and which is the referenced table?</p>
+<p>Since the primary key is unique, it is also unique which entry is referenced. Often, primary key columns contain the suffix "id" (=identifier) and foreign key columns contain the name of the referenced table, like names_id. However, this is only a <em>convention</em> which might not be fulfilled for all databases you ever encounter.</p>
+<p class=question>18.) Try the query from the last section again, but this time use as the connection column not the name, but the foreign key-column.</p>
+<p>Because of this, but also for other reasons not discussed here: If you query data spreading over more than one table, and if there exists a connection between a <em>primary key</em> and a <em>foreign key</em>, <strong>always use this connection</strong>! Do not use other columns, which seem to serve the same purpose!</p>
+
+<h2>Who is the thief? - Order by and group by</h2>
+<p>To find out, who is the thief check the text messages stored by the mobile phone providers.</p>
+<p class=question>19.) How is the name of the table containing the text messages and the one containing phone contracts?</p>
+<p class=question>20.) Get all text messages  which where sent between 2010-10-20 and 2010-10-25.
+<p class=question>21.) Get all contract ids where the <code>contract.name_id</code> is equal to one of the persons you get with the result set of the last section.</p>
+<p class=question>22.) Get all text messages where the sent date is the 23.10.2014 and the <code>contract_sender_id</code> is equal to the contract ids where the <code>contract.name_id</code> is equal to one of the persons you get with the result set of the last section.</p>
+<p>You see that you got all the required information but the output looks kind of chaotic. You can order an result set according to a column with an <code>order by</code>-phrase. The query to get all text messages from 21.10.2014 ordered by time reads</p>
+<pre>
+select message from messages where sent like '2014-10-21%
+<strong>order by sent</strong>;
+</pre>
+<p>Remember again tha date comparison is in <em>SQLite</em> a <em>lexicographical</em> comparison. So, if we would use <code>sent = '2014-10-21'</code> we got an empty result set. Instead we must use the <code>%</code> wild-card for the time information as shown above.</p>
+<p class=question>23.) Get a list of messages from our suspects from the given time period and sort the messages.</p>
+<p class=question>24.) Who are the thieves? Hint: Read the conversations as they a give a clear trace. Check the ids of sender and receiver of the message and look it up in the person tables!</p>
+
+<p>If you have found the thieves you deserve some break! After that, you can continue the investigation of this incredible crime and find out <a href="chapter4.html">who was the string puller</a>.
+
+<p><a href="chapter3_solutions.html">Solutions</a></p>
+
+</body>
+
+
+
+
+</html>

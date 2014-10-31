@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Solutions - SQL Basics</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>Solutions - SQL Basics</h1>
+<ol>
+
+<li><p class=answer>Use</p>
+<pre>
+select count(distinct residence) from person;
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from person where name like '%oh%';
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from person where name = 'Carlos' and age > 20;
+</pre></li>
+
+<li><p class=answer>For all contracts use</p>
+<pre>
+select count(*) from phone_contract;
+</pre></li>
+<p class=answer>and for the actives ones</p>
+<pre>
+select count(*) from phone_contract where status = 'active';
+</pre></li>
+
+<li><p class=answer>We get all combinations of names and phone numbers.</p></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select person.name from phone_contract where status = 'active'
+and person.name = phone_contract.name;
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select p.name, phone_number from person p, phone_contract where
+p.name = c.name and age > 30;
+</pre></li>
+
+</ol>
+
+</body>
+
+</html>

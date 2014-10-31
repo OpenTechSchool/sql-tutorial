@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Who was the string puller? - Data quality and aggregation functions</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h1>Who was the string puller? - Data quality and aggregation functions</h1>
+
+<p>A week later the local police found the thieves and had them arrested. The picture was already sold on the black market two days after the coup, but for a reasonable chance for mitigation of punishment they disclosed the buyers and the picture could be brought back to the museum where it belongs.</p>
+<h2>Data quality</h2>
+<p>But for the court trial, further evidence needs to be collected, and the question who actually initiated the fraud is open. For this, one may conclude, that the original initiator kept more money than the henchmen. So, have a look at the bank data of our thieves.</p>
+<p class=question>25.) Which tables are containing bank data?</p>
+<p class=question>26.) How are these table connected with each other, and with the names table? Which primary/foreign keys are there? Hint: Often it is a good idea to use pen and paper to draw a diagram denoting the connections. One possible way to to this is to represent to represent tables by a list of their columns and to draw a line for every primary key-foreign key relationship. Ask a coach for details.<p>
+<p class=question>27.) Which columns can you use to get the connection between names and the account table? Hint: Again, using pen and paper might be very helpful.</p>
+<p class=question>28.) Get the account numbers of our thieves.</p>
+<p>Depending on the actually query, you might be surprised: Philipp does not have a bank account? But you are almost sure he has! This is a very common situation, that you do not get the results you expect. There are some possibilities:</p>
+<ul>
+<li>The SQL-query was not formulated in a suitable way</li>
+<li>The data does not exists</li>
+<li>The data is corrupt</li>
+</ul> 
+<p>Our experience with large databases is that most common reason is the first one, followed by the third reason. So unclean data is a common issue.</p>
+<p>What can in this situation? Try not to compare the exact names with <code>=</code>, but try the <code>like</code>-comparator.</p>
+<p class=question>29.) Get a list of account details taking into account the different ways to spell Sarah or Philipp.</p>
+<p>To deal with unclean data one sometimes has to be creative and to try different things to find the data one is looking for. Once again: If there is a <em>primary key/foreign key connection</em>, use it! These columns have <em>extra checks</em> by the database, so the probability that these are corrupt is much, much lower than for other columns. If there are no such primary-key columns, it is usually a bad database design which should be a quite rare exception.</p>
+
+<h2>Who got the money? - Aggregate Functions</h2>
+<p>If you want to calculate a quantity from several values from a column you use aggregate functions, e.g. average values or sums. One aggregate function we have already learned about: The <code>count</code> function. Important other functions are:</p>
+<ul>
+<li><code>AVG()</code> Returns the average value
+<li><code>COUNT()</code> Returns the number of rows</li>
+<li><code>FIRST()</code> Returns the first value</li>
+<li><code>LAST()</code> Returns the last value</li>
+<li><code>MAX()</code> Returns the largest value</li>
+<li><code>MIN()</code> Returns the smallest value</li>
+<li><code>SUM()</code> Returns the sum</li>
+</ul>
+<p>Even if it does not make much sense, we compute the average of all phone numbers:</p>
+<pre>select avg(phone_number) from phone_contract;</pre>
+<p class=question>30.) What is the sum of all transactions of Sarah?</p>
+<p class=question>31.) What is the sum of all transactions of Sarah between October 23 and October 25.?</p>
+<p>We could do now the same for Philipp. But we want to learn a few more useful commands first. SQL has a nice command for cases like the one, where you want to use an aggregate function for subsets according to values in another column:</p>
+<pre>
+select column_name, aggregate_function(column_name)
+from table_name
+where column_name operator value
+group by column_name;
+</pre>
+<p>For instance, if you want to know the sum of all transaction per account number, you can use</p>
+<pre>
+select account_number_fk, sum(amount)
+from bank_transaction
+where date > "2014-10-22" and date < "2014-10-26"
+group by account_number_fk;
+</pre>
+<p>Note that <code>group by</code> can also be used for more than one column.</p>
+<p>These information would have provided an alternative way to identify suspected persons: Anyone who has gotten more than, for instance 20.000€, during the time period in question on their bank account would have been a suspect. In this case, we want to formulate a condition on the result of an aggregated function. Here, we cannot use a <code>where</code> clause, instead we use the <code>having</code> clause:
+<pre>
+select column_name, aggregate_function(column_name)
+from table_name
+where column_name operator value
+group by column_name
+having aggregate_function(column_name) operator value;
+</pre>
+<p class=question>32.) Get a list of account numbers and sums of transactions for all accounts where the amount is greater than 10.000€ in the time in question. Who is probably the initiator of the crime?</p>
+
+<p>Have you found the criminal mastermind. If yes, you might want to learn about some <a href="chapter5.html">advanced topics</a>.
+
+<p><a href="chapter4_solutions.html">Solutions</a></p>
+
+</body>
+
+
+
+
+
+
+</html>

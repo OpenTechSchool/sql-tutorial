@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>SQL Basics</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h1>SQL Basics</h1>
+
+<h2>Simple queries</h2>
+<p>In a SQL database, data is stored in a set of tables. A table contains a collection of entries (="lines"), information of the same type.</p>
+<p>We want to see what is in the table person:</p>
+<pre>select * from person;</pre>
+<p>This is too much information as we are only interested in the name:</p>
+<pre>select name from person;</pre>
+<p>In general:</p>
+<pre>select col1, col2, ... from tablename;</pre>
+<p>We can get the number of lines of results by using the count command. To get the number of entries in the person table we use</p>
+<pre>select count(*) from person;</pre>
+<p>Results might contain duplicates (they form a multi-set). We can get only the distinct results by</p<
+<pre>select distinct col1,col2, ... from tablename;</pre>
+<p>Now you have learned enough start writing SQL queries and to answer the first question
+<p class=question>1.) How many different cities of residence do the people in the persons table have?</p>
+
+<h2>Types</h2>
+<p>Columns in databases can have different types. The most important ones are <code>varchar(n)</code> for text data with up to n characters, <code>integer</code> for integer numbers (e.g. 12 or -4),  <code>real</code> for floating point numbers (e.g. 23.3434), <code>date</code> for dates (e.g. "12/12/2014"), <code>time</code> for value denoting a time of the day, and <code>boolean</code> for entries which can be either true or false (e.g. does the phone number belong to an active contract?).</p>
+
+<h2>Constraints</h2>
+<p>Quite often we are not interested in all of the entries of the database, especially because it might contain a huge number of lines. To get only the lines fulfilling some constraints, the where clause is used, e.g:</p>
+<pre>select name, residence from person where age > 30;</pre>
+<p>For the different SQL data types, different constrains make sense. For all types, we can check for equal <code>=</code> and not equal <code>!=</code>. For numbers, one can also compare for <em>larger</em> <code>></code>, <em>larger or equal</em> <code>>=</code>, <em>smaller</em> <code><</code>, <em>smaller or equal</em> <code><=</code>.</p>
+
+<p>For text, we use like, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy, but not <strong>An</strong>na, since this is an capital A.</p>
+<p>In SQLite the >,<,= operators for dates, do an <em>lexicographical</em> comparison, not a <em>numeric</em> one. This means that if there is an inconsistent representation of dates, the comparison might fail even though the two values represent the same dates. E.g. if once the format <code>"2014-10-23"</code> and once the format <code>"2014/10/16"</code> is used. Note that here double quotes <code>"</code> are used instead of single quotes <code>'</code>.</p>
+<p>Furthermore, the operator in checks if the left-hand-side is a member of the set on the right-hand-side. The two following statements are equivalent (try yourselves with a suitable query).</p>
+<pre>
+name in ('Philipp', 'Carlos') 
+</pre><pre>
+name = 'Philipp' or name = 'Carlos' 
+</pre>
+<p class=question>2.) Get all people whose names contains "oh".</p>
+<p>Constraints can be combined by the logical operator <code>and</code> and the operator <code>or</code>.</p>
+<p class=question>3.) Find all people whose first name is Carlos and who are older than 20 years.</p>
+<p>There is another table which is called phone_contract. The column containing the status (active, non-active) is called status.</p>
+<p class=question>4.) Find out, how many contracts there are and how many accounts are active.</p>
+
+<h2>Results from more than one table</h2>
+<p>Very often, it is necessary to get information which is spread over more than one table. For example, you may want to know the names of the people who have an active phone contract.</p>
+<p>When you know what you are looking for you are already able to formulate an concrete condition in the where clause. With SQL you can combine all information from various tables, e.g.</p>
+<pre>select person.name, phone_contract.phone_number 
+from person, phone_contract;
+</pre>
+<p>Note that we could also write <code>phone_contract</code> instead of <code>phone_contract.phone_number</code> as the table person does not contain a column called <code>phone_number</code> and, therefore, no ambiguity could arise.</p>
+<p class=question>5.) What does this query return?</p>
+<p>To output the matching names and phone numbers, we can use a <code>where</code> clause again:</p>
+<pre>select p.name, phone_number from person p, phone_contract c
+where c.name = p.name;</pre>
+<p>As we did not want to write the complete table name, we have defined and abbreviation in the from-clause (<code>person p</code>).</p>
+<p class=question>6.) Find all names who have an active phone contract.</p>
+<p class=question>7.) Find all names and phone numbers of people who are older than 30.</p>
+
+<h2>Sub-queries</h2>
+<p>The methods described above allow to get information from an arbitrary number of tables. But if you want to formulate an condition which depends on values of certain data entries, you need sub-queries. Assume, we want to get all names and phone numbers of all people who are older than Carlos:</p>
+<pre>
+select person.name, phone_number from person, phone_contract
+where person.name = phone_contract.name and age > 
+(select age from person where name = 'Carlos');
+</pre>
+<p>The part in the last line in parentheses is called a <em>sub-query</em>. Such sub-queries can be a little bit confusing at first sight so you might want to pause for a moment. An operator which is very useful when working with sub-queries is <code>in</code>. Keep this in mind when solving the following criminal case. </p>
+
+<p>If you have no more question concerning basics SQL queries, you can procede to the next chapter and solve <a href="chapter3.html">the theft of the Mona Lisa</a>.</p>
+
+<p><a href="chapter2_solutions.html">Solutions</a></p>
+
+</body>
+
+
+
+
+</html>

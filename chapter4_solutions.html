@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Solutions - Who was the string puller?</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>Solutions - Who was the string puller?</h1>
+
+
+
+<ol start="25">
+<li><p class=answer>account and bank_transaction</p>
+</li>
+
+<li><p class=answer>Via foreign key on <code>bank_transaction</code> referencing the table <code>account</code>, both have a primary key and connection to table name via the column <code>name</code> <em>without foreign constraint</em>.</p>
+</li>
+
+<li><p class=answer>Via the column <code>name</code> in the tables <code>person</code> and <code>account</code>.</p></li>
+
+<li><p class=answer>203993 and 203987</p>
+</li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from account where name 
+like 'Sara%' or name like 'Philip%';
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select sum(amount) from bank_transaction 
+where account_number_fk = 203987;
+</pre>
+<p class=answer>and</p>
+<pre>
+select  sum(amount) from bank_transaction
+where account_number_fk = (select account_number_pk 
+from account where name like 'Sara%');
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select sum(amount) from bank_transaction
+where account_number_fk = 203987
+and  date > "2014-10-22" and date < "2014-10-26";
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select account_number_fk, sum(amount)
+from bank_transaction where date > "2014-10-22";
+</pre>
+<p class=answer>and</p>
+<pre>
+select account_number_fk, sum(amount)
+from bank_transaction where date > "2014-10-22"
+and date < "2014-10-26"
+group by account_number_fk having sum(amount) > 10000;
+</pre>
+</li>
+
+
+
+
+</ol>
+
+</body>
+
+
+
+</html>

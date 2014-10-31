@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Solutions - The theft of Mona Lisa</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>Solutions - The theft of Mona Lisa</h1>
+
+
+
+<ol start="8">
+<li><p class=answer>Use the <code>select</code> command on the table <code>sqlite_master</code> and <code>pragma table_info</code> on all tables present in the database.</p></li>
+
+<li><p class=answer>Flight</p></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from flight;
+pragma table_info(flight);
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+pragma table_info (person);
+select * from person where residence = 'Paris';
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select name from flight where dest_city = 'Paris' 
+and date < "2014-10-23";
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select distinct name from flight where start_city = 'Paris' 
+and date > "2014-10-23";
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select distinct name from flight where dest_city = 'Paris'
+and date < "2014-10-23" 
+and name in (select name from flight where dest_city 
+= 'Paris' and date < "2014-10-23");
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select distinct person.name from person, flight
+where residence = 'Paris'
+or (flight.name = person.name and dest_city = 'Paris'
+and date < "2014-10-23" and flight.name in
+(select flight.name from flight 
+where dest_city = 'Paris' and date < "2014-10-23"));
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from flight where name in ('Philipp', 'Kesia', 'Sarah');
+</pre>
+<p class=answer>and</p>
+<pre>
+select distinct person.name, residence from person, flight
+where residence = 'Paris' or
+(flight.name = person.name and dest_city = 'Paris' and
+date < "2014-10-23" and flight.name in
+(select flight.name from flight
+where dest_city = 'Paris' and date < "2014-10-23"));
+</pre></li>
+
+<li><p class=answer>Foreign keys: <code>contract_sender_id</code>, <code>contract_receiver_id</code>. 
+Table: <code>phone_contract</code></p>
+<pre>
+select sql from sqlite_master
+where type = ‘table’ and name = ‘messages’;
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select distinct person.name, residence from person, flight 
+where residence = 'Paris' or 
+(flight.person_id = person.id and dest_city = 'Paris' 
+and date < "2014-10-23" and flight.name in 
+(select flight.name from flight where dest_city = 'Paris'
+and date < "2014-10-23"));
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select name from sqlite_master where type = 'table';
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from messages where sent > "2014-10-20"
+or sent < "2014-10-25";
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select id from phone_contract where phone_contract.person_id
+in (select distinct person.id from person, flight
+where	residence = 'Paris' or 
+(flight.person_id = person.id
+and dest_city = 'Paris' and date < "2014-10-23"
+and flight.name in (select flight.name from flight
+where dest_city = 'Paris' and date < "2014-10-23")));
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from messages where sent > "2014-10-20" 
+or sent < "2014-10-25" and contract_sender_id in
+(select id from phone_contract where 
+phone_contract.person_id in
+(select distinct person.id from person, flight
+where residence = 'Paris' or (flight.person_id = person.id
+and dest_city = 'Paris' and date < "2014-10-23" 
+and flight.name in (select flight.name from flight 
+where dest_city = 'Paris' and date < "2014-10-23"))));
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from messages
+where sent > "2014-10-20"  or sent < "2014-10-25" 
+and contract_sender_id in (select id from phone_contract
+where phone_contract.person_id in 
+(select distinct person.id from person, flight
+where residence = 'Paris' 
+or (flight.person_id = person.id
+and dest_city = 'Paris' and date < "2014-10-23"
+and flight.name in (select flight.name from flight
+where dest_city = 'Paris' 
+and date < "2014-10-23")))) order by sent;
+</pre></li>
+
+<li><p class=answer>Philipp and Sarah</p></li>
+
+</ol>
+
+
+
+</body>
+
+</html>

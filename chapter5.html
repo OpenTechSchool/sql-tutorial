@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Advanced Topics</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h1>Advanced Topics</h1>
+<h2>Nullable columns</h2>
+<p>There are situations where not all fields of a row have a value. For example, in the bank_transaction table, the date might be missing because the intelligence service did not obtain this information from the bank. To find the flights without a date we can use the command<p>
+<pre>
+select * from bank_transaction where date is null;
+</pre>
+<p class=question>33.) What is the percentage of flights where the date information is missing?</p>
+<p>In practice, there are usually columns which are created to be <em>not nullable</em>. In this case, the database refuses to add rows which contain null values in the respective fields. This is always true for primary keys.</p>
+<h2>Joins</h2>
+<p>Assume we are looking all information on passengers who have send or received a bank transfer on the date of their flights.</p>
+<p class=question>34.) What is the SQL-query?</p>
+<p>This kind of query is called an <em>inner join</em> on the two tables. An alternative syntax making this a little bit more explicit is</p>
+<pre>
+select * from flight <strong>inner join</strong> bank_transaction
+<strong>on</strong> flight.date = bank_transaction.date;
+</pre>
+<p>Now, we might want to see all flight data even if no bank transaction is performed on the same date while still showing the corresponding transaction data if there is one. This is called an <em>left outer join</em> or simply <em>left join</em>:</p>
+<pre>
+select * from flight left join bank_transaction
+on flight.date = bank_transaction.date;
+</pre>
+<p class=question>35.) What happens when no bank transactions occurs at the flight date?</p>
+<p>In a <em>right (outer) join</em> the roles of the two tables are just interchanged while in a <em>full outer join</em> all rows of both tables are shown. However, they are both not supported by SQLite.</p>
+
+<p>This is the end of the tutorial so far. If you have time left you can explore the database on your own. You can also have a look in the <a href="http://en.wikibooks.org/wiki/Structured_Query_Language">SQL wikibook</a> which is very good.
+
+<p><a href="chapter5_solutions.html">Solutions</a></p>
+<p><a href="index.html">Back to start</a></p>
+
+</body>
+
+
+
+
+
+
+</html>

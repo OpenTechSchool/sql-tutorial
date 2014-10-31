@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Solutions - Advanced Topics</title>
+  <link rel=stylesheet href="http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400">
+  <link rel=stylesheet href=style.css>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>Solutions - Advanced Topics</h1>
+
+<ol start="33">
+
+<li><p class=answer>Use</p>
+<pre>
+select count(*) from flight where date is null;
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select flight.*, bank_transaction.*
+from flight, bank_transaction
+where flight.date = bank_transaction.date;
+</pre></li>
+
+<li><p class=answer>The corresponding banking details are filled with null values.</p></li>
+
+
+</ol>
+
+</body>
+
+
+
+
+
+
+</html>
