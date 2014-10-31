@@ -20,29 +20,18 @@ h2 {
   font-size: 21pt;
   margin-top: 1.5em;
 }
-h2.step {
-  background: url(footprint.png) no-repeat 97% 50%, hsl(205,100%,93%);
-}
+h2.step {  background: hsl(205,100%,93%); }
 
 h3 {
   font-size: 18pt;
-}
-
-h3.goal { background: hsl(100,100%,93%); }
-h3.inst { background: hsl(35 ,95%,93%); }
-h3.ex { background:   hsl(55 ,90%,93%); }
-
-h2.step,
-h3.goal,
-h3.inst,
-h3.ex {
-  border-bottom: none;
 }
 
 p {
   margin-left: 13px;
   margin-right: 13px;
 }
+
+p.question { background: hsl(100,100%,93%); }
 
 a {
   padding: 2px 5px;
