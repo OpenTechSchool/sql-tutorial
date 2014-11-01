@@ -296,6 +296,7 @@ INSERT INTO person VALUES (243,'Nerissa','Beirut',62);
 INSERT INTO person VALUES (244,'Fernande','Algiers',83);
 INSERT INTO person VALUES (245,'Jeraldine','Quito',32);
 INSERT INTO person VALUES (246,'Gerda','Doha',10);
+INSERT INTO person VALUES (1005,'Philipp','Mumbai',88);
 
 
 INSERT INTO flight values (100, 100, 'Philipp', 'Hamburg', 'Paris', '2014-10-20 08:00:00');

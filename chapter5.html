@@ -15,11 +15,11 @@
 <pre>
 select * from bank_transaction where date is null;
 </pre>
-<p class=question>33.) What is the percentage of flights where the date information is missing?</p>
+<p class=question>37.) What is the percentage of flights where the date information is missing?</p>
 <p>In practice, there are usually columns which are created to be <em>not nullable</em>. In this case, the database refuses to add rows which contain null values in the respective fields. This is always true for primary keys.</p>
 <h2>Joins</h2>
 <p>Assume we are looking all information on passengers who have send or received a bank transfer on the date of their flights.</p>
-<p class=question>34.) What is the SQL query?</p>
+<p class=question>38.) What is the SQL query?</p>
 <p>This kind of query is called an <em>inner join</em> on the two tables. An alternative syntax making this a little bit more explicit is</p>
 <pre>
 select * from flight <strong>inner join</strong> bank_transaction
@@ -30,12 +30,14 @@ select * from flight <strong>inner join</strong> bank_transaction
 select * from flight <strong>left join</strong> bank_transaction
 <strong>on</strong> flight.date = bank_transaction.date;
 </pre>
-<p class=question>35.) What happens when no bank transactions occur at the flight date?</p>
+<p class=question>39.) What happens when no bank transactions occur at the flight date?</p>
 <p>In a <em>right (outer) join</em> the roles of the two tables are just interchanged while in a <em>full outer join</em> all rows of both tables are shown. However, they are both not supported by SQLite.</p>
 
 <p>The commands you have learned so far should be enough to get information from SQL data bases for most application. If you are also interested in entering data into databases and also changing existing data you might want to look at the <a href="chapter6.html">last chapter</a>.</p>
 
 <p><a href="chapter5_solutions.html">Solutions</a></p>
+
+<p><a href="index.html">Back to start</a></p>
 
 
 </body>

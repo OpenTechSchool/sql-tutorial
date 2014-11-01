@@ -14,10 +14,10 @@
 <p>A week later the local police found the thieves and had them arrested. The picture was already sold on the black market two days after the coup, but for a reasonable chance for mitigation of punishment they disclosed the buyers and the picture could be brought back to the museum where it belongs.</p>
 <h2>Data quality</h2>
 <p>But for the court trial, further evidence needs to be collected, and the question who actually initiated the fraud is open. For this, one may conclude, that the original initiator kept more money than the henchmen. So, have a look at the bank data of our thieves.</p>
-<p class=question>25.) Which tables are containing bank data?</p>
-<p class=question>26.) How are these tables connected with each other and with the names table? Which primary/foreign keys are there? Hint: Often it is a good idea to use pen and paper to draw a diagram denoting the connections. One possible way to to this is to represent tables by a list of their columns and to draw a line for every primary key-foreign key relationship. Ask a coach for details.<p>
-<p class=question>27.) Which columns can you use to get the connection between names and the account table? Hint: Again, using pen and paper might be very helpful.</p>
-<p class=question>28.) Get the account numbers of our thieves.</p>
+<p class=question>29.) Which tables are containing bank data?</p>
+<p class=question>30.) How are these tables connected with each other and with the names table? Which primary/foreign keys are there? Hint: Often it is a good idea to use pen and paper to draw a diagram denoting the connections. One possible way to to this is to represent tables by a list of their columns and to draw a line for every primary key-foreign key relationship. Ask a coach for details.<p>
+<p class=question>31.) Which columns can you use to get the connection between names and the account table? Hint: Again, using pen and paper might be very helpful.</p>
+<p class=question>32.) Get the account numbers of our thieves.</p>
 <p>Depending on the actually query, you might be surprised: Philipp does not have a bank account? But you are almost sure he has! This is a very common situation, that you do not get the results you expect. There are some possibilities:</p>
 <ol>
 <li>The SQL-query was not formulated in a suitable way</li>
@@ -25,7 +25,7 @@
 <li>The data is corrupt</li>
 </ol> 
 <p>Our experience with large databases is that the most common reason is the first one, followed by the third reason. So unclean data is a common issue. What can be done in this situation? Try not to compare the exact names with <code>=</code>, but try the <code>like</code>-comparator.</p>
-<p class=question>29.) Get a list of account details taking into account the different ways to spell Sarah or Philipp.</p>
+<p class=question>33.) Get a list of account details taking into account the different ways to spell Sarah or Philipp.</p>
 <p>To deal with unclean data one sometimes has to be creative and to try different things to find the data one is looking for. Once again: If there is a <em>primary key/foreign key connection</em>, use it! These columns have <em>extra checks</em> by the database, so the probability that these are corrupt is much, much lower than for other columns. If there are no such primary-key columns, it is usually a bad database design which should be a quite rare exception.</p>
 
 <h2>Who got the money? - Aggregate Functions</h2>
@@ -41,8 +41,8 @@
 </ul>
 <p>Even if it does not make much sense, we compute the average of all phone numbers:</p>
 <pre>select avg(phone_number) from phone_contract;</pre>
-<p class=question>30.) What is the sum of all transactions of Sarah?</p>
-<p class=question>31.) What is the sum of all transactions of Sarah between October 23 and October 25?</p>
+<p class=question>34.) What is the sum of all transactions of Sarah?</p>
+<p class=question>35.) What is the sum of all transactions of Sarah between October 23 and October 25?</p>
 <p>We could do now the same for Philipp. But we want to learn a few more useful commands first. SQL has a nice command for cases like the one, where you want to use an aggregate function for subsets according to values in another column:</p>
 <pre>
 select column_name, aggregate_function(column_name)
@@ -66,11 +66,13 @@ where column_name operator value
 group by column_name
 having aggregate_function(column_name) operator value;
 </pre>
-<p class=question>32.) Get a list of account numbers and sums of transactions for all accounts where the amount is greater than 10.000€ in the time in question. Who is probably the initiator of the crime?</p>
+<p class=question>36.) Get a list of account numbers and sums of transactions for all accounts where the amount is greater than 10.000€ in the time in question. Who is probably the initiator of the crime?</p>
 
-<p>Have you found the criminal mastermind. If yes, you might want to learn about some <a href="chapter5.html">advanced topics</a>.
+<p>Have you found the criminal mastermind? If yes, you might want to learn about some <a href="chapter5.html">advanced topics</a>.
 
 <p><a href="chapter4_solutions.html">Solutions</a></p>
+
+<p><a href="index.html">Back to start</a></p>
 
 </body>
 

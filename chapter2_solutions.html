@@ -13,6 +13,11 @@
 
 <li><p class=answer>Use</p>
 <pre>
+select distinct residence from person;
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
 select count(distinct residence) from person;
 </pre></li>
 
@@ -23,13 +28,30 @@ select * from person where name like '%oh%';
 
 <li><p class=answer>Use</p>
 <pre>
+select * from flight where date < "2014-10-20";
+</pre></li>
+
+<li><p class=answer>Use</p>
+<pre>
+select * from person where name in ('Philipp', 'Carlos') 
+</pre>
+<p class=answer>and</p>
+<pre>
+select * from person where name = 'Philipp' or name = 'Carlos'
+</pre>
+</li>
+
+<li><p class=answer>Use</p>
+<pre>
 select * from person where name = 'Carlos' and age > 20;
 </pre></li>
 
 <li><p class=answer>For all contracts use</p>
 <pre>
 select count(*) from phone_contract;
-</pre></li>
+</pre>
+
+</li>
 <p class=answer>and for the actives ones</p>
 <pre>
 select count(*) from phone_contract where status = 'active';
@@ -48,6 +70,8 @@ and person.name = phone_contract.name;
 select p.name, phone_number from person p, phone_contract where
 p.name = c.name and age > 30;
 </pre></li>
+
+<li><p class=answer>It returns name, age and phone number for all people who have the same age as person living in Paris.</p></li>
 
 </ol>
 

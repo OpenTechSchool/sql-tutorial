@@ -21,11 +21,11 @@
 INSERT INTO person VALUES (250,'Max','Berlin',21);
 </pre>
 <p>Remember that the first entry is a <em>primary key</em> which means that it needs to be <em>unique</em>.</p>
-<p class=question>36.) What happens if you replace the <code>250</code> by <code>230</code>?</p>
+<p class=question>40.) What happens if you replace the <code>250</code> by <code>230</code>?</p>
 
 <p>Before inserting data, it is usually necessary to get information about the table (e.g. using the <code>pragma table_info</code> command) because the columns must be entered in the correct order with entries of the correct type.</p>
 
-<p class=question>37.) You found out that Max took a flight from his home town of Berlin to Istanbul. Add this information to the <code>flight</code> table and use a suitable query to check if you were successful. </p>
+<p class=question>41.) You found out that Max took a flight from his home town of Berlin to Istanbul. Add this information to the <code>flight</code> table and use a suitable query to check if you were successful. </p>
 
 <h2>Editing existing rows - Update</h2>
 
@@ -37,11 +37,13 @@ WHERE id = 250;
 </pre>
 <p>You can enter a comma seperated list of column assignments in the <code>SET</code> command. It is very important to use the <strong>primary key</strong> and not the name column (i.e. <code>WHERE name='Max'</code>). In this case you would move all persons called Max to Leipzig. Please use a query to check if Max was moved correctly.</p>
 
-<p class=question>38.) In the flight table there is a flight of a passenger Evie from Rabat to Doha. However, Evie has used a fake name and is, in reality Sherril from Bangalore. Correct this! Hint: Remember to set the <code>id</code> id to the correct value. Check if the update was successful.</p>
+<p class=question>42.) In the flight table there is a flight of a passenger Evie from Rabat to Doha. However, Evie has used a fake name and is, in reality Sherril from Bangalore. Correct this! Hint: Remember to set the <code>id</code> id to the correct value. Check if the update was successful.</p>
 
 <p>This is the end of the tutorial so far. If you have time left you can explore the database on your own. You can also have a look in the <a href="http://en.wikibooks.org/wiki/Structured_Query_Language">SQL wikibook</a> which is very good.</p>
 
 <p><a href="chapter6_solutions.html">Solutions</a></p>
+<p><a href="index.html">Back to start</a></p>
+
 <p><a href="index.html">Back to start</a></p>
 
 </body>
