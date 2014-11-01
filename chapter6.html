@@ -16,9 +16,9 @@
 <p>Before you start editing data you might want to make a backup of the database file. In any case, you can always <a href="databaseOTS.sqlite">download</a> it again.</p>
 
 <h2>Adding new rows - Insert</h2>
-<p>The simplest task is to insert new data into an existing table. This is done with the <code>INSERT</code> command. Assume you want to add a person called Max, age 21, living in Berlin. The statement reads.
+<p>The simplest task is to insert new data into an existing table. This is done with the <code>insert</code> command. Assume you want to add a person called Max, age 21, living in Berlin. The statement reads.
 <pre>
-INSERT INTO person VALUES (250,'Max','Berlin',21);
+insert into person values (250,'Max','Berlin',21);
 </pre>
 <p>Remember that the first entry is a <em>primary key</em> which means that it needs to be <em>unique</em>.</p>
 <p class=question>40.) What happens if you replace the <code>250</code> by <code>230</code>?</p>
@@ -29,21 +29,19 @@ INSERT INTO person VALUES (250,'Max','Berlin',21);
 
 <h2>Editing existing rows - Update</h2>
 
-<p>Max has moved from Berlin to Leipzig. To change the data use the <code>UPDATE</code> and <code>SET</code> command together with a <code>WHERE</code> clause:</p>
+<p>Max has moved from Berlin to Leipzig. To change the data use the <code>update</code> and <code>set</code> command together with a <code>where</code> clause:</p>
 <pre>
-UPDATE person
-SET residence = 'Leipzig'
-WHERE id = 250;
+update person
+set residence = 'Leipzig'
+where id = 250;
 </pre>
-<p>You can enter a comma seperated list of column assignments in the <code>SET</code> command. It is very important to use the <strong>primary key</strong> and not the name column (i.e. <code>WHERE name='Max'</code>). In this case you would move all persons called Max to Leipzig. Please use a query to check if Max was moved correctly.</p>
+<p>You can enter a comma seperated list of column assignments in the <code>set</code> command. It is very important to use the <em>primary key</em> and not the name column (i.e. <code>where name='Max'</code>). In this case you would move all persons called Max to Leipzig. Please use a query to check if Max was moved correctly.</p>
 
-<p class=question>42.) In the flight table there is a flight of a passenger Evie from Rabat to Doha. However, Evie has used a fake name and is, in reality Sherril from Bangalore. Correct this! Hint: Remember to set the <code>id</code> id to the correct value. Check if the update was successful.</p>
+<p class=question>42.) In the <code>flight</code> table there is a flight of a passenger Evie from Rabat to Doha. However, Evie has used a fake name and is, in reality Sherril from Bangalore. Correct this! Hint: Remember to set the <code>id</code> id to the correct value. Check if the update was successful.</p>
 
-<p>This is the end of the tutorial so far. If you have time left you can explore the database on your own. You can also have a look in the <a href="http://en.wikibooks.org/wiki/Structured_Query_Language">SQL wikibook</a> which is very good.</p>
+<p>This is the end of the tutorial so far. If you have time left you can explore the database on your own. If you want to learn more about the commands used to enter data and to create tables you can have a look at the <a href="databaseOTS.sql">SQL script used to create the sample database</a>. You can also have a look in the <a href="http://en.wikibooks.org/wiki/Structured_Query_Language">SQL wikibook</a> which is very good.</p>
 
 <p><a href="chapter6_solutions.html">Solutions</a></p>
-<p><a href="index.html">Back to start</a></p>
-
 <p><a href="index.html">Back to start</a></p>
 
 </body>

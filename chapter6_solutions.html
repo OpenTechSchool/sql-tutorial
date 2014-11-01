@@ -15,20 +15,20 @@
 
 <li><p class=answer>Use</p>
 <pre>
-INSERT INTO flight VALUES (600,250,'Max','Berlin','Istanbul',null);
+insert into flight values (600,250,'Max','Berlin','Istanbul',null);
 </pre>
 </li>
 
 <li><p class=answer>To get the id of Sherril in the person table use</p>
 <pre>
-SELECT id FROM person
-WHERE name = 'Sherril' and residence = 'Bangalore';
+select id from person
+where name = 'Sherril' and residence = 'Bangalore';
 </pre>
 <p class=answer>Then you can perform the update with</p>
 <pre>
-UPDATE flight
-SET person_id = 16, name = 'Sherril'
-WHERE name = 'Evie' and start_city = 'Rabat' and dest_city = 'Doha';
+update flight
+set person_id = 16, name = 'Sherril'
+where name = 'Evie' and start_city = 'Rabat' and dest_city = 'Doha';
 </pre>
 </li>
 

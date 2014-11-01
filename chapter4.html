@@ -31,13 +31,13 @@
 <h2>Who got the money? - Aggregate Functions</h2>
 <p>If you want to calculate a quantity from several values from a column you use aggregate functions, e.g. average values or sums. One aggregate function we have already learned about: The <code>count</code> function. Important other functions are:</p>
 <ul>
-<li><code>AVG()</code> Returns the average value
-<li><code>COUNT()</code> Returns the number of rows</li>
-<li><code>FIRST()</code> Returns the first value</li>
-<li><code>LAST()</code> Returns the last value</li>
-<li><code>MAX()</code> Returns the largest value</li>
-<li><code>MIN()</code> Returns the smallest value</li>
-<li><code>SUM()</code> Returns the sum</li>
+<li><code>avg()</code> Returns the average value
+<li><code>count()</code> Returns the number of rows</li>
+<li><code>first()</code> Returns the first value</li>
+<li><code>last()</code> Returns the last value</li>
+<li><code>max()</code> Returns the largest value</li>
+<li><code>min()</code> Returns the smallest value</li>
+<li><code>sum()</code> Returns the sum</li>
 </ul>
 <p>Even if it does not make much sense, we compute the average of all phone numbers:</p>
 <pre>select avg(phone_number) from phone_contract;</pre>

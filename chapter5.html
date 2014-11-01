@@ -18,7 +18,7 @@ select * from bank_transaction where date is null;
 <p class=question>37.) What is the percentage of flights where the date information is missing?</p>
 <p>In practice, there are usually columns which are created to be <em>not nullable</em>. In this case, the database refuses to add rows which contain null values in the respective fields. This is always true for primary keys.</p>
 <h2>Joins</h2>
-<p>Assume we are looking all information on passengers who have send or received a bank transfer on the date of their flights.</p>
+<p>Assume we are looking for all information on passengers who have send or received a bank transfer on the date of their flights.</p>
 <p class=question>38.) What is the SQL query?</p>
 <p>This kind of query is called an <em>inner join</em> on the two tables. An alternative syntax making this a little bit more explicit is</p>
 <pre>
