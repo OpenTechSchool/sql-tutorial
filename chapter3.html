@@ -10,7 +10,7 @@
 <body>
 
 <h1>The theft of the Mona Lisa</h1>
-<p>Now we can start to use our new skills to solve a criminal case: one of the most startling art thefts in history: On October the 23rd, 2014 the Mona Lisa was stolen from the Louvre in Paris. There is no trace of the thieves. You are working for Interpol and want to find out who is responsible for this crime. Due to new regulations you have access to any data of any international companies and states, like register of residents, mobile phone text messages or bank data. So, using these resources, find the thieves!</p>
+<p>Now we can start to use our new skills to solve a criminal case: one of the most startling art thefts in history: On October the 23rd, 2014 the Mona Lisa was stolen from the Louvre in Paris. There is no trace of the thieves. You are working for Interpol and want to find out who is responsible for this crime. Due to new regulations you have access to any data of many international companies and states, like registers of residents, mobile phone text messages, and bank data. So, using these resources, find the thieves!</p>
 
 <h2>Which tables are there? - System tables</h2>
 <p>So, first you need to get an overview of what kind of data is actually available, i.e. you want to know what tables are in the database. The sqlite database contains are table named <code>sqlite_master</code> which holds meta information. We can get the names of the tables by an ordinary SQL query:</p>
@@ -25,7 +25,7 @@ Remarks: In other databases (e.g. Oracle, DB2 etc.) this meta information is sto
 <ol>
 <li>Find out, who was in Paris at that time.</li>
 <li>The thief was probably not working alone. Is there any suspicious communication during the time in question?</li>
-<li>If you find the people responsible, who was the actual wire-puller and who was "only" executing henchman?</li>
+<li>If you find the people responsible, who was the actual wire-puller and who were "only" executing henchmen?</li>
 </ol>
 
 <h2>Who was in Paris?</h2>
@@ -60,7 +60,7 @@ Remarks: In other databases (e.g. Oracle, DB2 etc.) this meta information is sto
 
 <h2>Who is the thief? - Order by and group by</h2>
 <p>To find out who is the thief, check the text messages stored by the mobile phone providers.</p>
-<p class=question>23.) How is the name of the table containing the text messages and the one containing phone contracts?</p>
+<p class=question>23.) What are the names of the table containing the text messages and the one containing phone contracts?</p>
 <p class=question>24.) Get all text messages  which where sent between 2010-10-20 and 2010-10-25.
 <p class=question>25.) Get all contract ids where the <code>contract.name_id</code> is equal to one of the persons from the results of question 15.</p>
 <p class=question>26.) Get all text messages where the sent date is the 23.10.2014 and the <code>contract_sender_id</code> is equal to the contract ids where the <code>contract.name_id</code> is equal to one of the persons from the results of question 15.</p>
