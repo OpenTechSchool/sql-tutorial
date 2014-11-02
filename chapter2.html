@@ -37,7 +37,8 @@
 <pre>select name, residence from person where age > 30;</pre>
 <p>For the different type of data, different constrains make sense. For all kind of data, we can check for equal <code>=</code> and not equal <code>!=</code>. For numbers, one can also compare for <em>larger</em> <code>></code>, <em>larger or equal</em> <code>>=</code>, <em>smaller</em> <code><</code>, <em>smaller or equal</em> <code><=</code>.</p>
 
-<p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy, but not <strong>An</strong>na, since this is a Capital A.</p>
+<p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy. Note that in SQLite, the <code>like</code> operator is <em>case insensitive</code> by default.
+
 <p class=question>3.) Get all people whose names contains "oh".</p>
 <p>In SQLite the >,<,= operators for dates, do an <em>lexicographical</em> comparison, not a <em>numeric</em> one. This means that if there is an inconsistent representation of dates, the comparison might fail even though the two values represent the same dates. E.g. if once the format <code>"2014-10-23"</code> and once the format <code>"2014/10/16"</code> is used. Note that here double quotes <code>"</code> are used instead of single quotes <code>'</code>.</p>
 There is a table named <code>flight</code> containg flight data. The column with the dates is called <code>date</code>.
