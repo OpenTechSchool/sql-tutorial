@@ -35,7 +35,7 @@
 <h2>Constraints</h2>
 <p>Quite often we are not interested in all of the entries of the database, especially because it might contain a huge number of lines. To get only the lines fulfilling some constraints, the <code>where</code> clause is used, e.g:</p>
 <pre>select name, residence from person where age > 30;</pre>
-<p>For the different type of data, different constrains make sense. For all kind of data, we can check for equal <code>=</code> and not equal <code>!=</code>. For numbers, one can also compare for <em>larger</em> <code>></code>, <em>larger or equal</em> <code>>=</code>, <em>smaller</em> <code></code>, <em>smaller or equal</em> <code><=</code>.</p>
+<p>For the different type of data, different constrains make sense. For all kind of data, we can check for equal <code>=</code> and not equal <code>!=</code>. For numbers, one can also compare for <em>larger</em> <code>></code>, <em>larger or equal</em> <code>>=</code>, <em>smaller</em> <code><</code>, <em>smaller or equal</em> <code><=</code>.</p>
 
 <p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string. The string should be surrounded by single quotes <code>'</code>, and you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy, but not <strong>An</strong>na, since this is a Capital A.</p>
 <p class=question>3.) Get all people whose names contains "oh".</p>
