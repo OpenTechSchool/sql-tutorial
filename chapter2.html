@@ -62,7 +62,7 @@ name = 'Philipp' or name = 'Carlos'
 <pre>select person.name, phone_contract.phone_number 
 from person, phone_contract;
 </pre>
-<p>Note that we could also write <code>phone_contract</code> instead of <code>phone_contract.phone_number</code> as the table person does not contain a column called <code>phone_number</code> and, therefore, no ambiguity could arise.</p>
+<p>Note that we could also write <code>phone_number</code> instead of <code>phone_contract.phone_number</code> as the table person does not contain a column called <code>phone_number</code> and, therefore, no ambiguity could arise.</p>
 <p class=question>8.) What does this query return?</p>
 <p>To output the matching names and phone numbers, we can use a <code>where</code> clause again:</p>
 <pre>select p.name, phone_number from person p, phone_contract c
