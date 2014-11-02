@@ -48,8 +48,8 @@ and date > "2014-10-23";
 <pre>
 select distinct name from flight where dest_city = 'Paris'
 and date < "2014-10-23" 
-and name in (select name from flight where dest_city 
-= 'Paris' and date < "2014-10-23");
+and name in (select name from flight where start_city 
+= 'Paris' and date > "2014-10-23");
 </pre></li>
 
 <li><p class=answer>Use</p>
@@ -59,7 +59,7 @@ where residence = 'Paris'
 or (flight.name = person.name and dest_city = 'Paris'
 and date < "2014-10-23" and flight.name in
 (select flight.name from flight 
-where dest_city = 'Paris' and date < "2014-10-23"));
+where start_city = 'Paris' and date > "2014-10-23"));
 </pre></li>
 
 <li><p class=answer>Use</p>
@@ -112,7 +112,7 @@ where	residence = 'Paris' or
 (flight.person_id = person.id
 and dest_city = 'Paris' and date < "2014-10-23"
 and flight.name in (select flight.name from flight
-where dest_city = 'Paris' and date < "2014-10-23")));
+where start_city = 'Paris' and date > "2014-10-23")));
 </pre></li>
 
 <li><p class=answer>Use</p>
@@ -125,7 +125,7 @@ where phone_contract.person_id in
 where residence = 'Paris' or (flight.person_id = person.id
 and dest_city = 'Paris' and date < "2014-10-23"
 and flight.name in (select flight.name from flight
-where dest_city = 'Paris' and date < "2014-10-23"))));
+where start_city = 'Paris' and date > "2014-10-23"))));
 </pre></li>
 
 <li><p class=answer>Use</p>
@@ -138,7 +138,7 @@ where phone_contract.person_id in
 where residence = 'Paris' or (flight.person_id = person.id
 and dest_city = 'Paris' and date < "2014-10-23"
 and flight.name in (select flight.name from flight
-where dest_city = 'Paris' and date < "2014-10-23"))))
+where start_city = 'Paris' and date > "2014-10-23"))))
 order by sent;
 </pre>
 <p class=answer>After having found the ids of the two thieves you can use</p>
