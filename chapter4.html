@@ -58,7 +58,7 @@ where date > "2014-10-22" and date < "2014-10-26"
 group by account_number_fk;
 </pre>
 <p>Note that <code>group by</code> can also be used for more than one column.</p>
-<p>These information would have provided an alternative way to identify suspected persons: Anyone who has gotten more than, for instance 20.000€, during the time period in question on their bank account would have been a suspect. In this case, we want to formulate a condition on the result of an aggregated function. Here, we cannot use a <code>where</code> clause, instead we use the <code>having</code> clause:
+<p>These information would have provided an alternative way to identify suspected persons: Anyone who has gotten more than, for instance 20.000€, during the time period in question in their bank account would have been a suspect. In this case, we want to formulate a condition on the result of an aggregated function. Here, we cannot use a <code>where</code> clause, instead we use the <code>having</code> clause:
 <pre>
 select column_name, aggregate_function(column_name)
 from table_name
