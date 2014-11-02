@@ -12,7 +12,7 @@
 <h1>SQL basics</h1>
 
 <h2>Simple queries</h2>
-<p>In a SQL database, data is stored in a set of tables. A table contains a collection of entries (="lines"), information of the same type such as personal data or phone contract information.</p> 
+<p>In a SQL database, data is stored in a set of tables. A table contains a collection of entries (="lines"), information of the same type such as personal data or phone contract information.</p>
 
 <p align=center><img src="table1.png" alt="person table" width=650></p>
 <p align=center><img src="table2.png" alt="phone_contract table" width=650></p>
@@ -43,11 +43,11 @@
 There is a table named <code>flight</code> containg flight data. The column with the dates is called <code>date</code>.
 <p class=question>4.) Get all flights before October 20.</p>
 
-<p>Furthermore, the operator in checks if the left-hand-side is a member of the set on the right-hand-side. The two following statements are equivalent</p>
+<p>Furthermore, the operator <code>in</code> checks if the left-hand-side is a member of the set on the right-hand-side. The two following statements are equivalent</p>
 <pre>
-name in ('Philipp', 'Carlos') 
+name in ('Philipp', 'Carlos')
 </pre><pre>
-name = 'Philipp' or name = 'Carlos' 
+name = 'Philipp' or name = 'Carlos'
 </pre>
 <p class=question>5.)Formulate two suitable queries to demonstrate that.</p>
 
@@ -59,7 +59,7 @@ name = 'Philipp' or name = 'Carlos'
 <h2>Results from more than one table</h2>
 <p>Usually, it is necessary to get information which is spread over more than one table. For example, you may want to know the names of the people who have an active phone contract.</p>
 <p>When you know what you are looking for you are already able to formulate a concrete condition in the where clause. With SQL you can combine information from various tables, e.g.</p>
-<pre>select person.name, phone_contract.phone_number 
+<pre>select person.name, phone_contract.phone_number
 from person, phone_contract;
 </pre>
 <p>Note that we could also write <code>phone_number</code> instead of <code>phone_contract.phone_number</code> as the table person does not contain a column called <code>phone_number</code> and, therefore, no ambiguity could arise.</p>
