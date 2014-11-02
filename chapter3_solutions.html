@@ -73,7 +73,7 @@ where residence = 'Paris' or
 (flight.name = person.name and dest_city = 'Paris' and
 date < "2014-10-23" and flight.name in
 (select flight.name from flight
-where dest_city = 'Paris' and date < "2014-10-23"));
+where start_city = 'Paris' and date > "2014-10-23"));
 </pre></li>
 
 <li><p class=answer>Foreign keys: <code>contract_sender_id</code>, <code>contract_receiver_id</code>. 
@@ -89,8 +89,8 @@ select distinct person.name, residence from person, flight
 where residence = 'Paris' or 
 (flight.person_id = person.id and dest_city = 'Paris' 
 and date < "2014-10-23" and flight.name in 
-(select flight.name from flight where dest_city = 'Paris'
-and date < "2014-10-23"));
+(select flight.name from flight where start_city = 'Paris'
+and date > "2014-10-23"));
 </pre></li>
 
 <li><p class=answer>Use</p>
