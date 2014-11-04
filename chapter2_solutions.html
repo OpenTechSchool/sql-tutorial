@@ -61,8 +61,8 @@ select count(*) from phone_contract where status = 'active';
 
 <li><p class=answer>Use</p>
 <pre>
-select person.name from phone_contract where status = 'active'
-and person.name = phone_contract.name;
+select person.name, person.age from person, phone_contract
+where person.name=phone_contract.name and status = 'active';
 </pre></li>
 
 <li><p class=answer>Use</p>

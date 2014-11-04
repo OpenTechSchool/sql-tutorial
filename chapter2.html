@@ -17,14 +17,13 @@
 <p align=center><img src="table1.png" alt="person table" width=650></p>
 <p align=center><img src="table2.png" alt="phone_contract table" width=650></p>
 
-
 <p>We want to see what is in the table person:</p>
 <pre>select * from person;</pre>
 <p>This is too much information as we are only interested in the name:</p>
 <pre>select name from person;</pre>
 <p>In general:</p>
 <pre>select col1, col2, ... from tablename;</pre>
-<p>We can get the number of lines of results by using the count command. To get the number of entries in the person table we use</p>
+<p>Note that <code>select *</code> selects <em>all</em> columns of the respective table. We can get the number of lines of results by using the count command. To get the number of entries in the person table we use</p>
 <pre>select count(*) from person;</pre>
 <p>Results might contain duplicates (they form a multi-set). We can get only the distinct results by</p>
 <pre>select distinct col1,col2, ... from tablename;</pre>
@@ -37,12 +36,8 @@
 <pre>select name, residence from person where age > 30;</pre>
 <p>For the different type of data, different constrains make sense. For all kind of data, we can check for equal <code>=</code> and not equal <code>!=</code>. For numbers, one can also compare for <em>larger</em> <code>></code>, <em>larger or equal</em> <code>>=</code>, <em>smaller</em> <code><</code>, <em>smaller or equal</em> <code><=</code>.</p>
 
-<<<<<<< HEAD
-<p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy. Note that in SQLite, the <code>like</code> operator is <em>case insensitive</code> by default.
+<p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string, where you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy. Note that in SQLite, the <code>like</code> operator is <em>case insensitive</em> by default.
 
-=======
-<p>For text, we use <code>like</code>, to find entries where the text value in a column contains a string. The string should be surrounded by single quotes <code>'</code>, and you can use the <code>%</code> as a wild-card for unknown parts of a word. E.g. if you search for <code>'%an%'</code>, the following words would fit: B<strong>an</strong>ana, f<strong>an</strong>tasy, but not <strong>An</strong>na, since this is a Capital A.</p>
->>>>>>> 0051abf36686309bb132c5e0d7ed6717a9bb879b
 <p class=question>3.) Get all people whose names contains "oh".</p>
 <p>In SQLite the <code>></code>,<code><</code>,<code>=</code> operators for dates, do an <em>lexicographical</em> comparison, not a <em>numeric</em> one. This means that if there is an inconsistent representation of dates, the comparison might fail even though the two values represent the same dates. E.g. if once the format <code>"2014-10-23"</code> and once the format <code>"2014/10/16"</code> is used. Note that here double quotes <code>"</code> are used instead of single quotes <code>'</code>.</p>
 There is a table named <code>flight</code> containg flight data. The column with the dates is called <code>date</code>.
@@ -59,7 +54,7 @@ name = 'Philipp' or name = 'Carlos'
 <p>Constraints can be combined by the logical operator <code>and</code> and the operator <code>or</code>.</p>
 <p class=question>6.) Find all people whose first name is Carlos and who are older than 20 years.</p>
 <p>There is another table which is called <code>phone_contract</code>. The column containing the status (active, non-active) is called <code>status</code>.</p>
-<p class=question>7.) Find out, how many contracts there are and how many accounts are active.</p>
+<p class=question>7.) Find out, how many contracts there. With a second query find out how many of them are and how many accounts are active.</p>
 
 <h2>Results from more than one table</h2>
 <p>Usually, it is necessary to get information which is spread over more than one table. For example, you may want to know the names of the people who have an active phone contract.</p>
@@ -73,7 +68,7 @@ from person, phone_contract;
 <pre>select p.name, c.phone_number from person p, phone_contract c
 where c.name = p.name;</pre>
 <p>As we did not want to write the complete table name, we have defined and abbreviation in the <code>from</code> clause (<code>person p</code>).</p>
-<p class=question>9.) Find all names who have an active phone contract.</p>
+<p class=question>9.) Find all names and ages of persons who have an active phone contract.</p>
 <p class=question>10.) Find all names and phone numbers of people who are older than 30.</p>
 
 <h2>Sub-queries</h2>
@@ -91,7 +86,7 @@ age in (select age from person where residence = 'Paris');
 <p>If you have no more question concerning basics SQL queries, you can procede to the next chapter and solve <a href="chapter3.html">the theft of the Mona Lisa</a>.</p>
 
 <p><a href="chapter2_solutions.html">Solutions</a></p>
-Sub
+
 <p><a href="index.html">Back to start</a></p>
 
 </body>

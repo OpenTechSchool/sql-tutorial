@@ -11,7 +11,6 @@
 <h1>Solutions - The theft of the Mona Lisa</h1>
 
 
-
 <ol start="12">
 <li><p class=answer>Use the <code>select</code> command on the table <code>sqlite_master</code> and <code>pragma table_info</code> on all tables present in the database.</p></li>
 
@@ -108,7 +107,7 @@ or sent < "2014-10-25";
 <pre>
 select id from phone_contract where phone_contract.person_id
 in (select distinct person.id from person, flight
-where	residence = 'Paris' or 
+where residence = 'Paris' or 
 (flight.person_id = person.id
 and dest_city = 'Paris' and date < "2014-10-23"
 and flight.name in (select flight.name from flight

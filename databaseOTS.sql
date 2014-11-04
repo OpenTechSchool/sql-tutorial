@@ -190,7 +190,7 @@ INSERT INTO bank_transaction values (430,2655480,null,'Cash withdrawal',443.17);
 
 
 INSERT INTO person values (100, 'Philipp', 'Hamburg', 42);
-INSERT INTO person values (101, 'Phillipp', 'Mumbai',75);
+INSERT INTO person values (101, 'Philip', 'Mumbai',75);
 INSERT INTO person values (102, 'Carlos', 'Paris', 21);
 INSERT INTO person values (103, 'Wei', 'Paris', 36);
 INSERT INTO person values (104, 'John', 'Sydney', 37);
