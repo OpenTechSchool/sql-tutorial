@@ -337,7 +337,7 @@ INSERT INTO flight VALUES(208,140,'Bradly'  ,'Hong Kong','Algiers','2014-09-27 0
 INSERT INTO flight VALUES (209,17,'Michele','Giza','Abidjan','2014-09-19 00:00:00');
 INSERT INTO flight VALUES(210,134,'Tawanda'  ,'Mexico City','Manila','2014-10-03 00:00:00');
 INSERT INTO flight VALUES (492,20,'Cameron','Wuhan','Jaipur','2014-09-03 00:00:00');
-INSERT INTO flight VALUES (493,141,'Bethanie','Quito','Quito','2014-10-27 00:00:00');
+INSERT INTO flight VALUES (493,141,'Bethanie','Quito','Paris','2014-10-27 00:00:00');
 INSERT INTO flight VALUES (494,146,'Clorinda','London','Shantou','2014-10-09 00:00:00');
 INSERT INTO flight VALUES (495,8,'Ophelia','Ekurhuleni','Shantou','2014-10-03 00:00:00');
 INSERT INTO flight VALUES (496,136,'Melodie','Nanjing','Accra','2014-10-18 00:00:00');
@@ -348,7 +348,8 @@ INSERT INTO flight VALUES (500,19,'Voncile','Dhaka','Tianjin','2014-09-06 00:00:
 INSERT INTO flight VALUES (501,23,'Anton','Kinshasa','Kampala','2014-10-18 00:00:00');
 INSERT INTO flight VALUES (502,142,'Evie','Rabat','Doha','2014-09-02 00:00:00');
 INSERT INTO flight VALUES (503,15,'Iluminada','Beijing','Guangzhou','2014-09-12 00:00:00');
-INSERT INTO flight VALUES (343,150,'Laronda','unknown','Chengdu','2014-09-02 00:00:00');
+INSERT INTO flight VALUES (504,141,'Bethanie','Paris','Frankfurt','2014-10-31 00:00:00');
+INSERT INTO flight VALUES (343,150,'Laronda','Paris','Chengdu','2014-09-02 00:00:00');
 INSERT INTO flight VALUES(344,13,'Lu'  ,'Bogotá','Nairobi','2014-10-04 00:00:00');
 INSERT INTO flight VALUES (345,25,'Renna','Quanzhou','Rabat','2014-09-08 00:00:00');
 INSERT INTO flight VALUES (346,130,'Leslie','Caracas','Khartoum','2014-09-30 00:00:00');
