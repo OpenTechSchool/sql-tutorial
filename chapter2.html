@@ -76,7 +76,7 @@ where c.name = p.name;</pre>
 
 <p class=question>11.)What does the following query do?</p>
 <pre>
-select person.name, person.age, phone_number from person, phone_contract
+select person.name, person.age, residence, phone_number from person, phone_contract
 where person.name = phone_contract.name and
 age in (select age from person where residence = 'Paris');
 </pre>
