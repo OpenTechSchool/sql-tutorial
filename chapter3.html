@@ -17,6 +17,7 @@
 <pre>select name from sqlite_master where type = 'table';</pre>
 <p>To get information about a specific table use the <code>pragma</code> command:</p>
 <pre>pragma table_info (tablename);</pre>
+<p>where <code>tablename</code> needs to be replaced by the name of the table your are actually interested in.</p>
 <p class=question>12.) Use the two commands above to get information about the columns in the various tables.
 Remarks: In other databases (e.g. Oracle, DB2 etc.) this meta information is stored differently, i.e. the system tables are always called differently. Sometimes there is more than one system table. When working with another database than sqlite you need to google for the names of the system tables of that database.</p>
 

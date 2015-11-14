@@ -81,7 +81,27 @@ where person.name = phone_contract.name and
 age in (select age from person where residence = 'Paris');
 </pre>
 <p>The part in the last line in parentheses is called a <em>sub-query</em>. Such sub-queries can be a little bit confusing at first sight so you might want to pause for a moment.</p>
-<p>Now let's look at the statement above a little bit closer. First, only perform the sub-query. It returns a the <em>list</em> of all ages of persons with residence in Paris. Then then <em>in</em> operator is used to filter the results of the main query on ages occuring in this list.</p>
+<p>Now let's look at the statement above a little bit closer. First, only perform the sub-query
+</p>
+<pre>
+select age from person where residence = "Paris";
+</pre>
+<p>
+and look at the results. It returns a the <em>list</em> of all ages of persons with residence in Paris. As a next step, try the query
+</p>
+</pre>
+select person.name, person.age, residence from person 
+where age in (21,36);
+</pre>
+<p>
+Now you can replace the <code>where</code> clause whith the sub-query above without altering the result. Try this! The last step to get to the complete statement is to add the matching <code>phone_mumber</code> from the table <code>phone_contract</code>.
+</p>
+<p> 
+This technique of decomposing a complex SQL-statement into its simpler parts and than reassembling them is offen extremely helpful when dealing with new or unfamiliar constructs.
+</p>
+
+
+
 
 <p>If you have no more question concerning basics SQL queries, you can procede to the next chapter and solve <a href="chapter3.html">the theft of the Mona Lisa</a>.</p>
 
